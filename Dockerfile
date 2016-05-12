@@ -31,7 +31,7 @@ RUN cd /tmp/kafka-manager && \
     printf '#!/bin/sh\nexec ./bin/kafka-manager -Dconfig.file=${KM_CONFIGFILE} "${KM_ARGS}" "${@}"\n' > /kafka-manager-${KM_VERSION}/km.sh && \
     chmod +x /kafka-manager-${KM_VERSION}/km.sh && \
     rm -fr /kafka-manager-${KM_VERSION}/share \
-    apk del --no-cache git
+    apk del git
 
 WORKDIR /kafka-manager-${KM_VERSION}
 
