@@ -10,7 +10,7 @@ ENV JAVA_MAJOR=8 \
 ENV JAVA_HOME=/opt/jdk1.${JAVA_MAJOR}.0_${JAVA_UPDATE} \
     KM_VERSION=1.3.0.8 \
     KM_REVISION=6e196ea7a332471bead747535f9676f0a2bad008 \
-    KM_DIR=/kafka-manager-${KM_VERSION}
+    KM_DIR=/kafka-manager-${KM_VERSION} \
     KM_CFG="${KM_DIR}/conf/application.conf"
     
 RUN apk add --no-cache git && \
