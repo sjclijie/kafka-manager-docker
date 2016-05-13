@@ -30,8 +30,9 @@ RUN cd /tmp/kafka-manager && \
     rm -fr /tmp/* /root/.sbt /root/.ivy2 && \
     printf '#!/bin/sh\nexec ./bin/kafka-manager -Dconfig.file=${KM_CONFIGFILE} "${KM_ARGS}" "${@}"\n' > /kafka-manager-${KM_VERSION}/km.sh && \
     chmod +x /kafka-manager-${KM_VERSION}/km.sh && \
-    rm -fr /kafka-manager-${KM_VERSION}/share && \
-    apk del git
+    rm -fr /kafka-manager-${KM_VERSION}/share
+
+RUN apk add --no-cache wget curl && apk del git
 
 WORKDIR /kafka-manager-${KM_VERSION}
 
