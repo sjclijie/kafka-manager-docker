@@ -10,7 +10,7 @@ for i in {30..0}; do
   sleep 1
 done
 
-sleep ${PAUSE:0}
+sleep ${PAUSE:-0}
 
 cd /kafka-manager-${KM_VERSION}
 
