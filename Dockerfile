@@ -28,13 +28,16 @@ RUN apk add --no-cache git && \
 RUN cd /tmp/kafka-manager && \
     unzip  -d / ./target/universal/kafka-manager-${KM_VERSION}.zip && \
     rm -fr /tmp/* /root/.sbt /root/.ivy2 && \
-    printf '#!/bin/sh\nexec ./bin/kafka-manager -Dconfig.file=${KM_CONFIGFILE} "${KM_ARGS}" "${@}"\n' > /kafka-manager-${KM_VERSION}/km.sh && \
-    chmod +x /kafka-manager-${KM_VERSION}/km.sh && \
     rm -fr /kafka-manager-${KM_VERSION}/share
 
 RUN apk add --no-cache wget curl && apk del git
 
+ADD docker-entrypoint.sh /kafka-manager-${KM_VERSION}/
+
+RUN chmod +x /kafka-manager-${KM_VERSION}/docker-entrypoint.sh
+
 WORKDIR /kafka-manager-${KM_VERSION}
 
 EXPOSE 9000
-ENTRYPOINT ["./km.sh"]
+
+ENTRYPOINT ["docker-entrypoint.sh"]
