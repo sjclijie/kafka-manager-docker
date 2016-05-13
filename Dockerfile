@@ -30,7 +30,7 @@ RUN cd /tmp/kafka-manager && \
     rm -fr /tmp/* /root/.sbt /root/.ivy2 && \
     rm -fr /kafka-manager-${KM_VERSION}/share
 
-RUN apk add --no-cache wget curl && apk del git
+RUN apk add --no-cache wget curl netcat-openbsd && apk del git
 
 ADD docker-entrypoint.sh /kafka-manager-${KM_VERSION}/
 
