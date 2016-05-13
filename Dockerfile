@@ -12,12 +12,6 @@ ENV JAVA_HOME=/opt/jdk1.${JAVA_MAJOR}.0_${JAVA_UPDATE} \
     KM_REVISION=6e196ea7a332471bead747535f9676f0a2bad008 \
     KM_CONFIGFILE="conf/application.conf"
     
-ENV ZK_HOST=${ZK_HOST:-127.0.0.1} \
-    ZK_PORT=${ZK_PORT:-2182} \
-    ZK_HOSTS="$ZK_HOST:$ZK_PORT"
-    
-ENV APPLICATION_SECRET="$KM_PASS"
-
 RUN apk add --no-cache git && \
     mkdir -p /tmp && \
     cd /tmp && \
