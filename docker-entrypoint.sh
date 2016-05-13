@@ -22,7 +22,8 @@ done
 # modify config file
 sed -i -r "s/(basicAuthentication.enabled)=.*/\1=true/" $KM_CFG
 sed -i -r "s/(basicAuthentication.username)=.*/\1=$KM_USER/" $KM_CFG
-sed -i -r "s/(basicAuthentication.password=.*)=.*/\1=$KM_PASS/" $KM_CFG
+sed -i -r "s/(basicAuthentication.password)=.*/\1=$KM_PASS/" $KM_CFG
+sed -i -r "s/(kafka-manager.zkhosts)=.*/\1=$ZK_HOST:$ZK_PORT/" $KM_CFG
 
 sleep ${PAUSE:-0}
 
