@@ -12,4 +12,6 @@ done
 
 sleep ${PAUSE:0}
 
+cd /kafka-manager-${KM_VERSION}
+
 exec ./bin/kafka-manager -Dconfig.file=${KM_CONFIGFILE} "${KM_ARGS}" "${@}"
