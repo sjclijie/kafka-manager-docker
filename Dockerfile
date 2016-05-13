@@ -34,9 +34,9 @@ RUN cd /tmp/kafka-manager && \
 
 RUN apk add --no-cache wget curl netcat-openbsd && apk del git
 
-ADD docker-entrypoint.sh /kafka-manager-${KM_VERSION}/
+ADD docker-entrypoint.sh /usr/bin/
 
-RUN chmod +x /kafka-manager-${KM_VERSION}/docker-entrypoint.sh
+RUN chmod +x /usr/bin/docker-entrypoint.sh 
 
 WORKDIR /kafka-manager-${KM_VERSION}
 
