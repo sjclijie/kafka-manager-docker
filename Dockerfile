@@ -1,7 +1,7 @@
 FROM anapsix/alpine-java:jdk8
 # inpired by: https://github.com/prabhuinbarajan/kafka-manager-docker/
 
-MAINTAINER Clement Laforet <sheepkiller@cultdeadsheep.org>
+MAINTAINER zhouyq <zhouyq@goodrain.com>
 
 ENV JAVA_MAJOR=8
 ENV JAVA_UPDATE=77
@@ -12,6 +12,17 @@ ENV KM_VERSION=1.3.0.8
 ENV KM_REVISION=6e196ea7a332471bead747535f9676f0a2bad008
 ENV KM_DIR=/kafka-manager-${KM_VERSION}
 ENV KM_CFG="${KM_DIR}/conf/application.conf"
+
+# timezone
+RUN apk add --no-cache tzdata && \
+       cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+       echo "Asia/Shanghai" >  /etc/timezone && \
+       date && apk del --no-cache tzdata
+
+# add bash and libc6-compat
+RUN apk add --no-cache bash libc6-compat && \
+    ln -s /lib /lib64 && \
+    sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
     
 RUN apk add --no-cache git && \
     mkdir -p /tmp && \
