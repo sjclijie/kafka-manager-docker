@@ -19,13 +19,11 @@ RUN apk add --no-cache tzdata && \
        echo "Asia/Shanghai" >  /etc/timezone && \
        date && apk del --no-cache tzdata
 
-# add bash and libc6-compat
-RUN apk add --no-cache bash libc6-compat && \
-    ln -s /lib /lib64 && \
+# add bash and git
+RUN apk add --no-cache bash git && \
     sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
     
-RUN apk add --no-cache git && \
-    mkdir -p /tmp && \
+RUN mkdir -p /tmp && \
     cd /tmp && \
     git clone https://github.com/yahoo/kafka-manager && \
     cd /tmp/kafka-manager && \
@@ -38,7 +36,7 @@ RUN cd /tmp/kafka-manager && \
     rm -fr /tmp/* /root/.sbt /root/.ivy2 && \
     rm -fr $KM_DIR/share
 
-RUN apk add --no-cache wget curl netcat-openbsd && apk del git
+RUN apk add --no-cache wget curl netcat-openbsd && apk del git tzdata
 
 ADD docker-entrypoint.sh /usr/bin/
 
