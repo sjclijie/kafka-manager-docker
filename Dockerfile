@@ -23,7 +23,6 @@ RUN apk add --no-cache git && \
     ./sbt clean dist
 
 RUN cd /tmp/kafka-manager && \
-    cp ./target/universal/kafka-manager-${KM_VERSION}.zip /tmp/ && \
-    sleep 100
+    cp ./target/universal/kafka-manager-${KM_VERSION}.zip /tmp/ 
     
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["sleep","100"]
