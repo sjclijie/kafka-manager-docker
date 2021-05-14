@@ -23,7 +23,7 @@ ENV JAVA_HOME=/usr/java/jdk1.8.0_${JAVA_UPDATE} \
 
 RUN mkdir -p /tmp && \
     cd /tmp && \
-    git clone git@github.com:sjclijie/CMAK.git && \
+    git clone https://github.com/sjclijie/CMAK.git && \
     cd /tmp/CMAK && \
     git checkout ${KM_REVISION} && \
     echo 'scalacOptions ++= Seq("-Xmax-classfile-name", "200")' >> build.sbt && \
